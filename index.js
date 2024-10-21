@@ -4,6 +4,8 @@ require('dotenv').config();
 const connection=require("./db")
 const bodyParser=require("body-parser");
 const authRouter=require("./Routes/AuthRouter")
+const driverRouter=require("./Routes/DriverRoutes")
+
  // yo chahi import garne tarika ho
 const app=express();
 //  creating an instance in express 
@@ -16,6 +18,8 @@ const PORT=4000;
 connection();
 
 app.use('/auth',authRouter)
+app.use('/driver',driverRouter)
+
 app.listen(PORT,()=>{
     console.log(`Server is listening on port ${PORT}`)
 })

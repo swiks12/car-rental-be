@@ -13,7 +13,7 @@ const jwt=require("jsonwebtoken");
         const newUser=new userModel({name,email,password});
         newUser.password=await bcrypt.hash(password,salt);
         await newUser.save();
-        res.status(201).json({message:"User Signup successfull"})
+        res.status(201).json({message:"User Signup successfull!"})
     } catch (error) {
         res.status(500).json({message:"Internal Server Error"});
         
@@ -33,7 +33,7 @@ const jwt=require("jsonwebtoken");
         }
         const jwtToken=jwt.sign({_id:user._id,email:user.email,},process.env.JWT_SECRET,{expiresIn:'24h'})
 
-        res.status(201).json({message:"login successfull",token:jwtToken,email:email,name:user.name})
+        res.status(201).json({message:"login successfull",token:jwtToken,email:email,name:user.name,role:user.role})
     } catch (error) {
         res.status(500).json({message:"Internal Server Error"});
     }
