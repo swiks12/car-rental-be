@@ -24,4 +24,22 @@ const createDrivers=async(req,res)=>{
     }
 }
 
-module.exports={createDrivers};
+
+const getDriverLists=async(req,res)=>{
+    try{
+
+        const getDriverList=await Driver.find();
+
+        if(!getDriverList){
+            res.status(400).json({error:"Driver Informarmation not found"})
+        }
+
+        res.status(200).json(getDriverList)
+
+    }catch(error){
+        res.status(500).json({message:"Internal server error",error:error.message});
+    }
+
+}
+
+module.exports={createDrivers,getDriverLists};
