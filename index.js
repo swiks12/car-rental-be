@@ -5,6 +5,9 @@ const connection=require("./db")
 const bodyParser=require("body-parser");
 const authRouter=require("./Routes/AuthRouter")
 const driverRouter=require("./Routes/DriverRoutes")
+const carRouter=require("./Routes/CarRouter")
+const packageRouter=require("./Routes/PackageRoute")
+
 
  // yo chahi import garne tarika ho
 const app=express();
@@ -22,6 +25,10 @@ app.use(bodyParser.json({ limit: '10mb' })); // JSON data limit set to 10MB
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // URL-encoded data limit set to 10MB
 app.use('/auth',authRouter)
 app.use('/driver',driverRouter)
+app.use('/car',carRouter);
+app.use('/package',packageRouter);
+
+
 
 app.listen(PORT,()=>{
     console.log(`Server is listening on port ${PORT}`)
