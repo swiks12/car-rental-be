@@ -45,6 +45,52 @@ const getCars=async(req,res)=>{
 }
 
 
+
+const updateCars = async (req, res) => {
+    try {
+        console.log(req.body);
+        // Base data to update without image
+        let data = {
+            brand: req.body.brand,
+            model: req.body.model,
+            year: req.body.year,
+            fuelType: req.body.fuelType,
+            transmissionType: req.body.transmissionType,
+            seatingCapacity: req.body.seatingCapacity,
+            mileage: req.body.mileage,
+            numberPlate: req.body.numberPlate,
+            shortDistanceBasePrice: req.body.shortDistanceBasePrice,
+            longDistanceBasePrice: req.body.longDistanceBasePrice,
+            availability: req.body.availability
+        };
+
+        // Check if a new image is provided; if not, skip the upload
+        if (!req.body.image.public_id) {
+            const result = await cloudinary.uploader.upload(req.body.image, {
+                folder: "carImages",
+            });
+            data = {
+                ...data,
+                image: {
+                    public_id: result.public_id,
+                    url: result.secure_url
+                }
+            };
+        }
+
+        // Update the car in the database
+        const updatedCar = await Car.findByIdAndUpdate(req.params.id, data, { new: true });
+
+        if (!updatedCar) {
+            return res.status(404).json({ message: "Car Not Found!" });
+        }
+
+        res.status(200).json({ message: "Car Update Successful!", updatedCar });
+    } catch (error) {
+        res.status(500).json({ message: "Server Error!", error: error.message });
+    }
+};
+
 // deleteCars
 const deleteCars=async(req,res)=>{
     try {
@@ -73,4 +119,4 @@ const individualCars=async(req,res)=>{
 }
 
 
-module.exports={createCars,getCars,deleteCars,individualCars};
+module.exports={createCars,getCars,updateCars,deleteCars,individualCars};
