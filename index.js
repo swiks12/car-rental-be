@@ -7,6 +7,7 @@ const authRouter=require("./Routes/AuthRouter")
 const driverRouter=require("./Routes/DriverRoutes")
 const carRouter=require("./Routes/CarRouter")
 const packageRouter=require("./Routes/PackageRoute")
+const bookingRouter=require("./Routes/BookingRoute")
 
 
  // yo chahi import garne tarika ho
@@ -27,6 +28,8 @@ app.use('/auth',authRouter)
 app.use('/driver',driverRouter)
 app.use('/car',carRouter);
 app.use('/package',packageRouter);
+app.use('/booking',bookingRouter);
+
 
 
 

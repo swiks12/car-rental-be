@@ -6,7 +6,9 @@ const userSchema=mongoose.Schema({
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     role:{type:String,default:"user"},
-    isVerfied:{type:Boolean,default:false}
+    isVerfied:{type:Boolean,default:false},
+    imagePassport:{public_id:{type:String,required:true},url:{type:String,required:true}},
+    image:{public_id:{type:String,required:true},url:{type:String,required:true}},
 });
 
 

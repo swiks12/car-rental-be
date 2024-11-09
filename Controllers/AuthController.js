@@ -33,7 +33,7 @@ const jwt=require("jsonwebtoken");
         }
         const jwtToken=jwt.sign({_id:user._id,email:user.email,},process.env.JWT_SECRET,{expiresIn:'24h'})
 
-        res.status(201).json({message:"login successfull",token:jwtToken,email:email,name:user.name,role:user.role})
+        res.status(201).json({message:"login successfull",token:jwtToken,role:user.role,userId:user._id})
     } catch (error) {
         res.status(500).json({message:"Internal Server Error"});
     }
