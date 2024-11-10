@@ -10,6 +10,7 @@ const bookingSchema= mongoose.Schema({
     pickUpTime:{type:String,required:true},
     dropOffTime:{type:String,required:true},
     bookingStatus:{type:String,default:'pending'},
+    bookingPeriod:{type:Number,required:true},
     bookedAmount:{type:Number,default:0,required:true},
     paymentStatus:{type:String,default:'pending'},
     carId: { type: mongoose.Schema.Types.ObjectId, default: null }, 
