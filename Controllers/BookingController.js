@@ -12,7 +12,8 @@ const createBookings=async(req,res)=>{
             pickUpTime:req.body.pickUpTime,
             dropOffTime:req.body.dropOffTime,
             userId:req.body.userId,
-            bookingPeriod:req.body.bookingPeriod
+            bookingPeriod:req.body.bookingPeriod,
+            budget:req.body.budget
         })
         res.status(200).json({message:"Booking first part completed!",id:createBooking._id})
     } catch (error) {

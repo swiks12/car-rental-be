@@ -17,6 +17,7 @@ const bookingSchema= mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, required: true }, 
     driverId: { type: mongoose.Schema.Types.ObjectId, default: null },
     createdAt: { type: Date, default: Date.now },    
+    budget:{type:Number,required:true}
 })
 
 const bookingModel=mongoose.model('bookings',bookingSchema);
