@@ -31,7 +31,7 @@ const getDriverLists=async(req,res)=>{
         const getDriverList=await Driver.find();
 
         if(!getDriverList){
-            return res.status(400).json({error:"Driver Informarmation not found"})
+            return res.status(400).json({error:"Driver Information not found"})
         }
 
         res.status(200).json(getDriverList);

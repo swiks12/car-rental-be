@@ -17,7 +17,11 @@ const bookingSchema= mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, required: true }, 
     driverId: { type: mongoose.Schema.Types.ObjectId, default: null },
     createdAt: { type: Date, default: Date.now },    
-    budget:{type:Number,required:true}
+    budget:{type:Number,required:true},
+    rentalType:{type:String,default:"selfDrive",required:true},
+    customerPickUp:{type:String,default:null},
+    customerDropOff:{type:String,default:null},
+
 })
 
 const bookingModel=mongoose.model('bookings',bookingSchema);
